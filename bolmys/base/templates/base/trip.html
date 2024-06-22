@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trips</title>
+    <link rel="stylesheet" href="{% static 'base/css/trip.css' %}">
+</head>
+<body>
+    {% include 'base/navbar.html' %}
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+    
+    <div class="container">
+        <div class="trip-card">
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="trip-info">
+                    <p><strong>Name:</strong> {{ trip.name }}</p>
+                    <p><strong>Company Name:</strong> {{ trip.company }}</p>
+                    <p><strong>Origin:</strong> {{ trip.origin }}</p>
+                    <p><strong>Destination:</strong> {{ trip.destination }}</p>
+                    <p><strong>Description:</strong> {{ trip.description }}</p>
+                    <p><strong>Price:</strong> {{ trip.price }}</p>
+                    <p><strong>Duration:</strong> {{ trip.duration }}</p>
+                    <p><strong>Transport Type:</strong> {{ trip.transport_type }}</p>
+                </div>
+                <input type="hidden" name="trip_id" value="{{ trip.id }}">
+                <button type="submit" class="trip-button">Leave your contact details</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

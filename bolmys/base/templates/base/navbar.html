@@ -1,0 +1,50 @@
+{% load groupPermission %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Title</title>
+    <link rel="stylesheet" href="{% static 'base/css/navbar.css' %}">
+</head>
+<body>
+    <div class="navbar">
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                {% if request.user.is_authenticated %}
+                {% if request.user|has_group:"admin" %}
+                    <li><a href="{% url 'addTrip' %}">Create Trip</a></li>
+                    <li><a href="{% url 'viewTrips' %}">View your trips</a></li>
+                {% endif %}
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                    {% if request.user|has_group:"user" %}
+                    <li><a href="{% url 'trips' %}">View trips</a></li>
+                    {% endif %}
+                {% endif %}
+            </ul>
+        </nav>
+        {% if request.user.is_authenticated %}
+            {% if request.user.user_avatar %}
+                <a href="{% url 'userProfile' request.user.id %}">
+                    <img src="{{ request.user.user_avatar.url }}" class="ava" alt="Avatar">
+                </a>
+            {% else %}
+                <a href="{% url 'userProfile'  request.user.id %}">
+                    <img src="{% static 'base/img/default-avatar.png' %}" class="ava" alt="Avatar">
+                </a>
+            {% endif %}
+        {% endif %}
+        <div class="login-logout">
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
+

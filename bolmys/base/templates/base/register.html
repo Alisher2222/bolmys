@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'base/css/register.css' %}">
+</head>
+<body>
+    <div class="container">
+        {% include 'base/navbar.html' %}
+        <div class="form-container">
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="form-field">
+                        {{ userForm.first_name.label_tag }}
+                        {{ userForm.first_name }}
+                    </div>
+                    <div class="form-field">
+                        {{ userForm.last_name.label_tag }}
+                        {{ userForm.last_name }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-field">
+                        {{ userForm.email.label_tag }}
+                        {{ userForm.email }}
+                    </div>
+                    <div class="form-field">
+                        {{ userForm.telephone_number.label_tag }}
+                        {{ userForm.telephone_number }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-field">
+                        {{ userForm.avatar.label_tag }}
+                        {{ userForm.avatar }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-field">
+                        {{ userForm.username.label_tag }}
+                        {{ userForm.username }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-field">
+                        {{ userForm.password1.label_tag }}
+                        {{ userForm.password1 }}
+                    </div>
+                    <div class="form-field">
+                        {{ userForm.password2.label_tag }}
+                        {{ userForm.password2 }}
+                    </div>
+                </div>
+                <input type="submit" value="Submit">
+                <p class="register-link">Have an account already? <a href="{% url 'login' %}">Login</a></p> 
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Trips</title>
+    <link rel = "stylesheet" href = "{% static 'base/css/viewTrips.css' %}">
+</head>
+<body>
+    <!-- Navbar included from base/navbar.html -->
+    {% include 'base/navbar.html' %}
+<div class = "container">
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Company</th>
+                <th>Origin</th>
+                <th>Destination</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Duration</th>
+                <th>Transport Type</th>
+                <th>users who left their contacts </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for trip in trips %}
+            <tr>
+                <td>{{ trip.name }}</td>
+                <td>{{ trip.company }}</td>
+                <td>{{ trip.origin }}</td>
+                <td>{{ trip.destination }}</td>
+                <td>{{ trip.description }}</td>
+                <td>{{ trip.price }}</td>
+                <td>{{ trip.duration }}</td>
+                <td>{{ trip.transport_type }}</td>
+                <td><a href="{% url 'usersContact' trip.id %}"><button>View</button></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

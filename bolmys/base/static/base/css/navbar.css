@@ -1,0 +1,73 @@
+.ava {
+    margin-left: 45px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+
+/* Navbar settings with flexible alignment */
+.navbar {
+    width: 100%;
+    height: 12%;
+    display: flex;
+    align-items: center;
+    padding: 0 8%;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.3); /* Adjust as needed */
+    position: fixed; /* Fix the navbar at the top */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* Logo settings */
+.logo {
+    width: 150px;
+    cursor: pointer;
+}
+
+/* Navigation settings */
+nav {
+    flex: 1;
+    text-align: right;
+}
+
+/* List items within nav, inline display */
+nav ul {
+    margin: 0; /* Ensure no margin for ul */
+    padding: 0; /* Ensure no padding for ul */
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+nav ul li {
+    margin-left: 60px;
+}
+
+/* Anchor tag settings within nav list items */
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    padding-left: 15px;
+    
+}
+
+.login-logout {
+    margin-left: 20px;
+}
+
+.login-logout a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.login-logout a:hover {
+    text-decoration: underline;
+}

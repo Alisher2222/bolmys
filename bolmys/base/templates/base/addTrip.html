@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'base/css/addTrip.css' %}">
+    <title>Add Trip</title>
+</head>
+<body>
+    {% include 'base/navbar.html' %}
+    <div class="container">
+        <div class="form-container">
+            <form method="POST" action="">
+                {% csrf_token %}
+                
+                {% if error %}
+                <div class="error-messages">
+                    <p>{{ error|linebreaks }}</p>
+                </div>
+                {% endif %}
+                
+                <div class="form-group">
+                    <div class="form-field">
+                        {{ tripForm.origin.label_tag }}
+                        {{ tripForm.origin }}
+                    </div>
+                    <div class="form-field">
+                        {{ tripForm.destination.label_tag }}
+                        {{ tripForm.destination }}
+                    </div>
+                    <div class="form-field">
+                        {{ tripForm.duration.label_tag }}
+                        {{ tripForm.duration }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-field">
+                        {{ tripForm.name.label_tag }}
+                        {{ tripForm.name }}
+                    </div>
+                    <div class="form-field">
+                        {{ tripForm.company.label_tag }}
+                        {{ tripForm.company }}
+                    </div>
+                    <div class="form-field">
+                        {{ tripForm.transport_type.label_tag }}
+                        {{ tripForm.transport_type }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-field">
+                        {{ tripForm.description.label_tag }}
+                        {{ tripForm.description }}
+                    </div>
+                    <div class="form-field">
+                        {{ tripForm.price.label_tag }}
+                        {{ tripForm.price }}
+                    </div>
+                </div>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

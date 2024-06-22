@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{% static 'base/css/profile.css' %}">
+</head>
+<body>
+    {% include 'base/navbar.html' %}
+    <div class="profile-container">
+        <div class="profile-card">
+            <div class="profile-avatar">
+                {% if request.user.user_avatar %}
+                    <img src="{{ user.user_avatar.url }}" alt="Avatar" class="avatar">
+                {% else %}
+                    <img src="{% static 'base/img/default-avatar.png' %}" alt="Avatar" class="avatar">
+                {% endif %}
+            </div>
+            <div class="profile-info">
+                <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+                <p><strong>First Name:</strong> {{ user.first_name }}</p>
+                <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+                <p><strong>Telephone Number:</strong> {{ user.telephone_number }}</p>
+                {% if request.user.id == user.id %}
+                    <a href="{% url 'userChange' request.user.id %}"><button class="change-button">Change</button></a>
+                {% endif %}
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

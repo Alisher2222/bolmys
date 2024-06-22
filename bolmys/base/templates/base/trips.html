@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trips</title>
+    <link rel="stylesheet" href="{% static 'base/css/trips.css' %}">
+</head>
+<body>
+    {% include 'base/navbar.html' %}
+    <div class="container">
+        <div class="filters">
+            <form method="get" action="">
+                <div class="filter-group origin-filter">
+                    <h3>Filter by Origin</h3>
+                    {% for origin in origins %}
+                        <div class="filter-option">
+                            <input type="radio" name="origin" value="{{ origin }}" id="origin-{{ origin }}" {% if request.GET.origin == origin %}checked{% endif %}>
+                            <label for="origin-{{ origin }}">{{ origin }}</label>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="filter-group destination-filter">
+                    <h3>Filter by Destination</h3>
+                    {% for destination in destinations %}
+                        <div class="filter-option">
+                            <input type="radio" name="destination" value="{{ destination }}" id="destination-{{ destination }}" {% if request.GET.destination == destination %}checked{% endif %}>
+                            <label for="destination-{{ destination }}">{{ destination }}</label>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="filter-actions">
+                    <input type="submit" value="Apply">
+                    <a href="{% url 'trips' %}"><button type="button">Reset Filters</button></a>
+                </div>
+            </form>
+        </div>
+
+        <div class="main-content">
+            <div class="search-bar">
+                <form method="get" action="">
+                    <input type="search" placeholder="Write the place where you want to go" name="searchedDestinition" value="{{ request.GET.searchedDestinition }}">
+                    <input type="submit" value="Search">
+                </form>
+            </div>
+
+            <div class="card-container">
+                {% for trip in trips %}
+                <div class="card">
+                    <h2>{{ trip.name }}</h2>
+                    <p><strong>Company Name:</strong> {{ trip.company }}</p>
+                    <p><strong>Origin:</strong> {{ trip.origin }}</p>
+                    <p><strong>Destination:</strong> {{ trip.destination }}</p>
+                    <p><strong>Price:</strong> {{ trip.price }} тг</p>
+                    <div class="card-buttons">
+                        <a href="{% url 'trip' trip.id %}"><button>Learn More</button></a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
